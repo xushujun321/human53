@@ -56,6 +56,7 @@
 </template>
 
 <script>
+// 引进封装验证码正则
 import { validMoblie, validPassword } from '@/utils/validate'
 import { mapActions } from 'vuex' // 引入vuex的辅助函数
 
