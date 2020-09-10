@@ -24,7 +24,13 @@ import request from '@/utils/request'
 // }
 
 export function login(data) {
-
+  return request({
+    // 注意：因为在vue.config.js的后端接口就是已经写好是
+    // 'http://ihrm-java.itheima.net/api'，所以不用重写
+    url: '/sys/login',
+    method: 'post',
+    data
+  })
 }
 
 export function getInfo(token) {
