@@ -18,3 +18,18 @@ export function validUsername(str) {
   const valid_map = ['admin', 'editor']
   return valid_map.indexOf(str.trim()) >= 0
 }
+
+/**
+ * 校验手机号码
+ */
+export function validMoblie(Moblie) {
+  const reg = /^1[3-9]\d{9}$/
+  return reg.test(Moblie)
+}
+/**
+ * 校验密码
+ */
+export function validPassword(Password) {
+  const reg = /^\w{6,16}$/
+  return reg.test(Password)
+}
