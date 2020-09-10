@@ -82,8 +82,8 @@ export default {
         password: '123456'
       },
       loginRules: {
-        mobile: [{ required: true, trigger: 'blur' }, { validator: validateUsername, trigger: 'blur' }],
-        password: [{ required: true, min: 6, max: 16, trigger: 'blur' }, { validator: validatePassword, trigger: 'blur' }]
+        mobile: [{ required: true, trigger: 'blur', message: '手机不能为空' }, { validator: validateUsername, trigger: 'blur' }],
+        password: [{ required: true, min: 6, max: 16, trigger: 'blur', message: '密码不能为空' }, { validator: validatePassword, trigger: 'blur' }]
       },
       loading: false,
       passwordType: 'password',
@@ -112,8 +112,8 @@ export default {
     },
     // 调用登录
     handleLogin() {
-      this.$refs.loginForm.validate(async valid => {
-        if (valid) {
+      this.$refs.loginForm.validate(async isOK => {
+        if (isOK) {
           try {
             this.loading = true
             await this['user/login'](this.loginForm) // 调用登录方法
