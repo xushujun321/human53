@@ -13,7 +13,7 @@ const name = defaultSettings.title || 'vue Admin Template' // page title
 // For example, Mac: sudo npm run
 // You can change the port by the following methods:
 // port = 9528 npm run dev OR npm run dev --port = 9528
-const port = process.env.port || process.env.npm_config_port || 9528 // dev port
+const port = process.env.port || process.env.npm_config_port || 8888 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -35,7 +35,29 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: true
+    },
+    // 代理配置
+    proxy: {
+      // 这里的api 表示如果我们的请求地址有/api的时候,就出触发代理机制
+      '/api': {
+        target: 'http://ihrm-java.itheima.net/api', // 我们要代理的地址
+        changeOrigin: true, // 是否跨域 需要设置此值为true 才可以让本地服务代理我们发出请求
+        pathRewrite: {
+          // 重新路由
+          '^/api': '' // 假设我们想把 localhost:8888/api 变成www.baidu.com/ 就需要这么做
+        }
+      }
     }
+  //   server{
+  //     //# 监听9099端口
+  //     listen 9099;
+  //     //# 本地的域名是localhost
+  //     server_name localhost;
+  //     //#凡是localhost:9099/api这个样子的，都转发到真正的服务端地址http://baidu.com
+  //     location ^~ /api {
+  //         proxy_pass http://baidu.com;
+  //     }
+  // }
     // 注释的mock数据部分
     // before: require('./mock/mock-server.js')
   },
