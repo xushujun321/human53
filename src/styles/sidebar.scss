@@ -10,7 +10,8 @@
   .sidebar-container {
     transition: width 0.28s;
     width: $sideBarWidth !important;
-    background-color: $menuBg;
+    // background-color: $menuBg;
+    background: -webkit-linear-gradient(bottom, #3d6df8, #5b8cff);
     height: 100%;
     position: fixed;
     font-size: 0px;
@@ -27,6 +28,7 @@
 
     .scrollbar-wrapper {
       overflow-x: hidden !important;
+      background: url('~@/assets/common/leftnavBg.png') no-repeat 0 100%;
     }
 
     .el-scrollbar__bar.is-vertical {
@@ -66,6 +68,32 @@
       border: none;
       height: 100%;
       width: 100% !important;
+      background-color: #43a7fe !important;
+      a {
+        li {
+          background-color: rgb(72, 120, 251) !important;
+          .svg-icon{
+            color: #fff;
+            font-size: 18px;
+            vertical-align: middle;
+            .icon {
+              color:#fff;
+            }
+          }
+          span {
+            color: #fff;
+          }
+          &:hover {
+            background-color: #fff !important;
+            .svg-icon {
+              color: #43a7fe;
+            }
+            span {
+              color: #43a7fe;
+            }
+          }
+        }
+      }
     }
 
     // menu hover
@@ -83,7 +111,8 @@
     & .nest-menu .el-submenu>.el-submenu__title,
     & .el-submenu .el-menu-item {
       min-width: $sideBarWidth !important;
-      background-color: $subMenuBg !important;
+      background-color: rgb(72, 120, 250) !important;
+          // background-color: $subMenuBg !important;
 
       &:hover {
         background-color: $subMenuHover !important;
