@@ -1,5 +1,5 @@
 // 引进token的获取、设置、删除的方法,设置时间戳，获取时间戳
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, removeToken, setTimeStamp } from '@/utils/auth'
 // 引进封装好的接口
 import { login, getUserInfo, getUserDetailById } from '@/api/user'
 const state = {
@@ -14,7 +14,7 @@ const mutations = {
     setToken(token)// 同步token到缓存内
   },
   // 删除并清空vuex中的token
-  removetoken(state) {
+  removeToken(state) {
     state.token = null // 将token设置成空
     removeToken() // 删除token
   },
@@ -34,7 +34,7 @@ const actions = {
     const res = await login(data)
     // 登录成功时
     context.commit('settoken', res)
-    // setTimeStamp() // 设置时间戳
+    setTimeStamp() // 设置时间戳
   },
   // 获取用户详情
   async getUserInfo(context) {

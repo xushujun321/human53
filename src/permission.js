@@ -37,3 +37,9 @@ router.beforeEach(async(to, from, next) => {
     }
   }
 })
+
+// 路由的后置守卫
+router.afterEach(function() {
+  // 关闭进度条
+  NProgress.done() // 开启进度条
+})
