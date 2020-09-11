@@ -15,19 +15,13 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
-/**
- * If you don't want to use mock-server
- * you want to use MockJs for mock api
- * you can execute: mockXHR()
- *
- * Currently MockJs will be used in the production environment,
- * please remove it before going online ! ! !
- */
-// 注释的mock数据的部分
-// if (process.env.NODE_ENV === 'production') {
-//   const { mockXHR } = require('../mock')
-//   mockXHR()
-// }
+// 完成对于所有指令的全局注册
+import * as Directives from '@/directives/index' // 引入自定义指令
+// Object.keys（）遍历对象，取得所有的key，得到的是数组格式，所以可以forEach（）
+Object.keys(Directives).forEach(key => {
+  // 全局注册Vue.directive（指令名称，对象）
+  Vue.directive(key, Directives[key])
+})
 
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
