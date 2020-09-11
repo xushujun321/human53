@@ -1,9 +1,11 @@
-// 引进token的获取、设置、删除的方法
+// 引进token的获取、设置、删除的方法,设置时间戳，获取时间戳
 import { getToken, setToken, removeToken } from '@/utils/auth'
 // 引进封装好的接口
-import { login } from '@/api/user'
+import { login, getUserInfo, getUserDetailById } from '@/api/user'
 const state = {
-  token: getToken()// 获取token
+  token: getToken(), // 获取token
+  // 因为我们会在getters中引用userinfo的变量，如果设置为null，则会引起异常和报错
+  userInfo: { }// 用户信息
 }
 const mutations = {
   // 重新设置vuex中的token
@@ -15,6 +17,14 @@ const mutations = {
   removetoken(state) {
     state.token = null // 将token设置成空
     removeToken() // 删除token
+  },
+  // 将整个的个人信息设置到用户的vuex数据中
+  setUserInfo(state, user) {
+    state.userInfo = { ...user }
+  },
+  // 删除用户信息
+  removeUserInfo(state) {
+    state.userInfo = { }// 重新赋值
   }
 }
 const actions = {
@@ -23,10 +33,25 @@ const actions = {
     // 发送请求
     const res = await login(data)
     // 登录成功时
-    // if (res.data.success) {
     context.commit('settoken', res)
-    // context.commit('settoken', res.data.data)// 将获取到的token赋值到vuex中
-    // }
+    // setTimeStamp() // 设置时间戳
+  },
+  // 获取用户详情
+  async getUserInfo(context) {
+    // 发送请求
+    const reslute = await getUserInfo()
+    console.log(reslute)
+    // 通过另一个接口来获取头像
+    const baseInfo = await getUserDetailById(reslute.userId)
+    const baseRuslt = { ...reslute, ...baseInfo }
+    // 将整个的个人信息设置到用户的vuex数据中,把头像合并到当前的资料中
+    context.commit('setUserInfo', baseRuslt)
+    return baseRuslt// 这里是为了后面调用actions时获取到完整数据
+  },
+  // 退出登录aciton
+  async lgout(context) {
+    context.commit('removeToken') // 删除token
+    context.commit('removerUserInfo') // 删除用户资料
   }
 }
 

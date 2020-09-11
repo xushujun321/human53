@@ -20,8 +20,6 @@ router.beforeEach(async(to, from, next) => {
       if (!store.state.user.userInfo.userId) {
         // 获取资料
         await store.dispatch('user/getUserInfo')
-        // 直接通过
-        next()
       }
       // 不是登录页，直接通过
       next()
