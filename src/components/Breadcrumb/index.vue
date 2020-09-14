@@ -3,7 +3,6 @@
     江苏传智播客教育科技股份有限公司
     <span class="breadBtn">体验版</span>
   </div>
-  <!-- <breadcrumb class="breadcrumb-container" /> -->
 </template>
 
 <script>
@@ -12,7 +11,7 @@ import pathToRegexp from 'path-to-regexp'
 export default {
   data() {
     return {
-      levelList: null
+
     }
   },
   watch: {
@@ -92,5 +91,10 @@ export default {
     border-radius: 10px;
     margin-left: 15px;
   }
+}
+.tree-card {
+  // padding: 30px  140px;
+  width: 300px;
+  font-size:14px;
 }
 </style>

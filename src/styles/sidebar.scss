@@ -11,7 +11,7 @@
     transition: width 0.28s;
     width: $sideBarWidth !important;
     // background-color: $menuBg;
-    background: -webkit-linear-gradient(bottom, #3d6df8, #5b8cff);
+    background:rgb(91, 139, 255);
     height: 100%;
     position: fixed;
     font-size: 0px;
@@ -68,10 +68,10 @@
       border: none;
       height: 100%;
       width: 100% !important;
-      background-color: #43a7fe !important;
+      /* background-color: #43a7fe !important; */
       a {
         li {
-          background-color: rgb(72, 120, 251) !important;
+          background-color: rgb(72, 120, 251) ;
           .svg-icon{
             color: #fff;
             font-size: 18px;
@@ -92,7 +92,17 @@
               color: #43a7fe;
             }
           }
+          &:active {
+          background-color: #fff !important;
+           .svg-icon {
+              color: #43a7fe;
+            }
+            span {
+              color: #43a7fe;
+            }
         }
+        }
+        
       }
     }
 
