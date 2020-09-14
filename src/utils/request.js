@@ -56,6 +56,8 @@ service.interceptors.response.use(response => {
     Message.error(error.message) // 提示错误信息
     return Promise.reject(error)
   }
+  Message.error(error.message) // 提示错误信息
+  return Promise.reject(error)
 }) // 响应拦截器
 
 service.interceptors.request.use(config => {
