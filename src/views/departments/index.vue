@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-container">
+  <div v-loading="loading" class="dashboard-container">
     <div class="app-container">
       <!-- 组织架构 -->
       <el-card class="tree-card">
@@ -29,6 +29,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       departs: [],
       company: {}, // 公司数据
       defaultProps: {
@@ -45,11 +46,13 @@ export default {
   methods: {
     // 获去数据
     async getDepartments() {
+      this.loading = true
       const result = await getDepartments()
       this.departs = transListToTreeData(result.depts, '')
       // console.log(this.departs)
       // id之所以给空字符串，因为是根，他的子部门pid全是空字符串
       this.company = { name: result.companyName, manager: '负责人', id: '' }
+      this.loading = false
     },
     // node为操作的节点
     addDepts(node) {
