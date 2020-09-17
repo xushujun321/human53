@@ -2,10 +2,12 @@
   <!-- 通用工具栏结构---左右布局，一分为二 -->
   <el-card class="page-tools">
     <el-row type="flex" justify="space-between" align="middle">
-      <el-col v-if="showBefore" class="before">
-        <!-- 左侧的坑 -->
-        <i class="el-icon-info" />
-        <slot name="before" />
+      <el-col>
+        <div v-if="showBefore" class="before">
+          <!-- 左侧的坑 -->
+          <i class="el-icon-info" />
+          <slot name="before" />
+        </div>
       </el-col>
       <el-col>
         <el-row type="flex" justify="end">
