@@ -47,7 +47,7 @@ service.interceptors.response.use(response => {
     return Promise.reject(new Error(message)) // 此时需要人为的reject当前的执行链 因为错了
   }
 }, error => {
-  if (error.response.data.code === 10002) {
+  if (error && error.response && error.response.data.code === 10002) {
     Message.error('token超时')
     // 当发现是10002状态码的时候 进行处理
     store.dispatch('user/lgout') // 调用登出操作
