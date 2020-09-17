@@ -30,6 +30,12 @@ Vue.use(components)
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
 
+import * as filters from '@/filters' // 引入工具类
+
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key]) // 注册全局过滤器
+})
+
 Vue.config.productionTip = false
 
 new Vue({
