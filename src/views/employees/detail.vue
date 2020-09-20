@@ -5,12 +5,12 @@
         <el-tabs v-model="activeName">
           <el-tab-pane label="登录账户设置" name="first">
             <el-row type="flex" justify="center" align="middle" style="height:200px">
-              <el-form ref="userInfo" label-width="120px" :model="userInfo" :rules="userRules">
+              <el-form ref="userForm" label-width="120px" :model="userInfo" :rules="userRules">
                 <el-form-item label="姓名:" prop="username">
                   <el-input v-model="userInfo.username" size="small" style="width:300px" />
                 </el-form-item>
-                <el-form-item label="密码:" prop="password">
-                  <el-input v-model="userInfo.password" type="password" size="small" style="width:300px" />
+                <el-form-item label="新密码:" prop="password2">
+                  <el-input v-model="userInfo.password2" type="password" size="small" style="width:300px" />
                 </el-form-item>
                 <el-form-item>
                   <el-button size="small" type="primary" @click="saveUser">保存</el-button>
@@ -49,7 +49,7 @@ export default {
       userId: this.$route.params.id, // 传递过来的用户id
       userInfo: {
         username: '', // 用户名
-        password: '' // 密码
+        password2: '' // 密码
       },
       userRules: {
         username: [{ required: true, message: '用户名不能为空', trigger: 'blur' }],
@@ -70,13 +70,15 @@ export default {
       this.userInfo = await getUserDetailById(this.userId)
     },
     // 保存信息
-    saveUser() {
-      this.$refs.userForm.validate(async validate => {
-        if (validate) {
-          await saveUserDetailById(this.userInfo)
-          this.$message.success('修改个人基本信息成功')
-        }
-      })
+    async saveUser() {
+      try {
+        // 校验
+        await this.$refs.userForm.validate()
+        await saveUserDetailById({ ...this.userInfo, password: this.userInfo.password2 }) // 将新密码的值替换原密码的值
+        this.$message.success('保存成功')
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }
