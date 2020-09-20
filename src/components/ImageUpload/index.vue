@@ -25,12 +25,12 @@
 </template>
 <script>
 import COS from 'cos-js-sdk-v5' // 引入腾讯云sdk
+const cos = new COS({
+  SecretId: 'AKID0xCB8i4FA2kDj6q6TaBVbS4tSmu1OmRq', // 身份识别 ID
+  SecretKey: '7yLRHrAH7bquiMkrmQ4ScVCnBE9pIWie' // 身份密钥
+})
 export default {
   data() {
-    // const cos = new COS({
-    //   SecretId: 'AKID0mqfEWqlUzIbeSkGRL6c7ML6c0B93To9', // 身份识别 ID
-    //   SecretKey: 'JFwNZdeRF2iOp03FFsGNDm44vWFitmNF' // 身份密钥
-    // })
     return {
       fileList: [], // 图片地址设置为数组，上传列表
       dialogVisible: false, // 控制显示预览弹层
@@ -81,26 +81,26 @@ export default {
     },
     // 因为我们要上传到腾讯云 所以需要这里自定义上传
     uploadFiles(params) {
-      const cos = new COS({
-        SecretId: 'AKID0mqfEWqlUzIbeSkGRL6c7ML6c0B93To9', // 身份识别 ID
-        SecretKey: 'JFwNZdeRF2iOp03FFsGNDm44vWFitmNF' // 身份密钥
-      })
       if (params.file) {
         cos.putObject({
-          Bucket: 'shuiruorhanyu-1302806742', /* 必须 存储桶*/
-          Region: 'ap-beijing', /* 存储桶所在地域，必须字段 */
+          Bucket: 'xiangmu-ziyuan01-1303194459', /* 必须 存储桶*/
+          Region: 'ap-guangzhou', /* 存储桶所在地域，必须字段 */
           Key: params.file.name, /* 文件名*/
-          StorageClass: 'STANDARD',
+          StorageClass: 'STANDARD', // 写死
           Body: params.file, // 上传文件对象
           onProgress: (progressData) => {
             this.percent = progressData.loaded / progressData.total * 100 // 百分比
           }
         }, (err, data) => {
           // 需要注意 不论上传成功或者失败 都会进入第二个参数
+          // 上传成功时，状态码与Location存在
           if (!err && data.statusCode === 200 && data.Location) {
+            // 注意：不能写死上传多少张。要找到该上传的是哪张图片
             this.fileList = this.fileList.map(item => {
+              // currentFileUid是对上传的图片储存的uid地址，注意：这里要是用this.currentFileUid，必须是箭头函数
               if (item.uid === this.currentFileUid) {
-                return { url: 'https://' + data.Location, upload: true }
+                // 将本地地址转换为上传后的图片地址
+                return { url: 'http://' + data.Location, upload: true }
               }
               return item
             })

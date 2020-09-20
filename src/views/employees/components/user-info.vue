@@ -58,7 +58,9 @@
         <el-col :span="12">
           <el-form-item label="员工头像">
             <!-- 放置上传图片 -->
-
+            <!-- 放置上传图片 -->
+            <image-upload ref="myStaffPhoto" />
+            <!-- <el-upload ref="myStaffPhoto" /> -->
           </el-form-item>
         </el-col>
       </el-row>
@@ -86,15 +88,14 @@
           </el-select>
         </el-form-item>
         <!-- 个人头像 -->
-        <el-row class="inline-info">
+        <!-- <el-row class="inline-info">
           <el-col :span="12">
             <el-form-item label="员工头像">
-              <!-- 放置上传图片 -->
-              <image-upload ref="myStaffPhoto" />
-              <!-- <el-upload ref="myStaffPhoto" /> -->
-            </el-form-item>
-          </el-col>
-        </el-row>
+        <image-upload ref="myStaffPhoto" />
+         <el-upload ref="myStaffPhoto" />
+        </el-form-item>
+        </el-col>
+        </el-row> -->
         <!-- 员工照片 -->
         <el-form-item label="员工照片">
           <!-- 放置上传图片 -->
@@ -402,7 +403,7 @@ export default {
         this.$message.warning('请等待图片上传完毕')
         return
       }
-      await updatePersonal({ ...this.formData, id: this.userId, staffPhoto: fileList.length ? fileList[0].url : null })
+      await updatePersonal({ ...this.formData, staffPhoto: fileList && fileList.length ? fileList[0].url : null })
       this.$message.success('保存成功')
     },
     // 个人信息的保存
@@ -414,7 +415,7 @@ export default {
         this.$message.warning('请等待图片上传完毕')
         return
       }
-      await saveUserDetailById({ ...this.userInfo, staffPhoto: fileList.length ? fileList[0].url : null })
+      await saveUserDetailById({ ...this.userInfo, staffPhoto: fileList && fileList.length ? fileList[0].url : null })
       this.$message.success('保存成功')
     },
     // 获取个人信息
