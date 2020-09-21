@@ -2,6 +2,8 @@
 import { getToken, setToken, removeToken, setTimeStamp } from '@/utils/auth'
 // 引进封装好的接口
 import { login, getUserInfo, getUserDetailById } from '@/api/user'
+// 引进重置路由的方法
+import { resetRouter } from '@/router'
 const state = {
   token: getToken(), // 获取token
   // 因为我们会在getters中引用userinfo的变量，如果设置为null，则会引起异常和报错
@@ -52,6 +54,8 @@ const actions = {
   async lgout(context) {
     context.commit('removeToken') // 删除token
     context.commit('removerUserInfo') // 删除用户资料
+    resetRouter() // 重置路由
+    context.commit('permission/setRoutes', [], { root: true }) // 设置路由为空
   }
 }
 
