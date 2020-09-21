@@ -14,6 +14,11 @@
         <el-table border="" :data="list">
           <el-table-column type="index" align="center" sortable="custom" label="序号" width="80" />
           <el-table-column prop="username" align="center" sortable="custom" label="姓名" />
+          <el-table-column label="头像" align="center">
+            <template slot-scope="{row}">
+              <img v-imageerror="require('@/assets/common/bigUserHeader.png')" :src="row.staffPhoto ? row.staffPhoto : require('@/assets/common/bigUserHeader.png') " style="border-radius: 50%; width: 100px; height: 100px; padding: 10px" alt="">
+            </template>
+          </el-table-column>
           <el-table-column prop="workNumber" align="center" sortable="custom" label="工号" />
           <el-table-column align="center" :formatter="formatEmployment" sortable="custom" label="聘用形式" />
           <el-table-column prop="departmentId" align="center" sortable="custom" label="部门" />
@@ -36,7 +41,7 @@
               <el-button size="small" type="text">转正</el-button>
               <el-button size="small" type="text">调岗</el-button>
               <el-button size="small" type="text">离职</el-button>
-              <el-button size="small" type="text">角色</el-button>
+              <el-button size="small" type="text" @click="role(row.id)">角色</el-button>
               <el-button size="small" type="text" @click="delEmployee(row.id)">删除</el-button>
             </template>
           </el-table-column>
@@ -53,6 +58,7 @@
         </el-row>
       </el-card>
       <AddEmployee :show-dialog.sync="showDialog" @addUser="addUser" />
+      <Assign ref="assign" :show-dialog.sync="showDialog2" :user-id="userId" />
     </div>
   </div>
 </template>
@@ -63,10 +69,13 @@ import { getEmployeeList, delEmployee } from '@/api/employees'
 import EmployeeEnum from '@/api/constant/employees'
 // 引近弹片组件
 import AddEmployee from './components/add-employee'
+// 引进分配角色弹片
+import Assign from './components/assign-role'
 import { formatDate } from '@/filters'
 export default {
   components: {
-    AddEmployee
+    AddEmployee,
+    Assign
   },
   data() {
     return {
@@ -77,7 +86,9 @@ export default {
         size: 5,
         total: 0
       },
-      showDialog: false
+      showDialog: false,
+      showDialog2: false,
+      userId: ''
     }
   },
   created() {
@@ -153,10 +164,20 @@ export default {
           if (headers[key] === 'correctionTime' || headers[key] === 'timeOfEntry') {
             // 处理时间
             return formatDate(item[headers[key]])
+          } else if (headers[key] === 'formOfEmployment') {
+            // 应聘形式
+            var en = EmployeeEnum.hireType.find(obj => obj.id === item[headers[key]])
+            return en.value || '未知'
           }
           return item[headers[key]]
         })
       })
+    },
+    // 分配角色的弹片显示
+    async role(id) {
+      this.userId = id
+      await this.$refs.assign.getUserDetailById(id)
+      this.showDialog2 = true
     }
   }
 }
