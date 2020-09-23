@@ -4,12 +4,12 @@ import Layout from '@/layout'
 const attendRouter = {
   path: '/attendances',
   component: Layout,
-  name: 'attendances',
+  menusName: 'attendances',
   children: [
     {
       path: '',
       component: () => import('@/views/attendances'),
-      name: 'attendances',
+      menusName: 'attendances',
       meta: {
         title: '考勤',
         icon: 'excel' }
@@ -17,7 +17,7 @@ const attendRouter = {
     {
       path: 'archiving',
       component: () => import('@/views/attendances/historical'),
-      name: 'archiving',
+      menusName: 'archiving',
       hidden: true,
       meta: {
         title: '归档'
@@ -26,7 +26,7 @@ const attendRouter = {
     {
       path: 'report/:month',
       component: () => import('@/views/attendances/report'),
-      name: 'reports',
+      menusName: 'reports',
       hidden: true,
       meta: {
         title: '报表'

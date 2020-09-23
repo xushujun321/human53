@@ -3,7 +3,7 @@ import Layout from '@/layout'
 export default {
   component: Layout,
   path: '/setting',
-  name: 'setting',
+  menusName: 'settings',
 
   children: [{
     path: '',

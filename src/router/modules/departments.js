@@ -3,7 +3,7 @@ import Layout from '@/layout'
 export default {
   component: Layout,
   path: '/departments',
-  name: 'departments',
+  menusName: 'departments',
 
   children: [{
     path: '',

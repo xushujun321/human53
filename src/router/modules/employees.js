@@ -3,7 +3,7 @@ import Layout from '@/layout' // 引入布局组件
 export default {
   component: Layout, // 当前路由组件
   path: '/employees', // 路由地址
-  name: 'employees', // 路由名称
+  menusName: 'employees', // 路由名称
 
   children: [{
     path: '', // 二级默认路由
