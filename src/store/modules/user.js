@@ -42,7 +42,7 @@ const actions = {
   async getUserInfo(context) {
     // 发送请求
     const reslute = await getUserInfo()
-    // console.log(reslute)
+    console.log(reslute)
     // 通过另一个接口来获取头像
     const baseInfo = await getUserDetailById(reslute.userId)
     const baseRuslt = { ...reslute, ...baseInfo }

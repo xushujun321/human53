@@ -84,6 +84,7 @@
         show-checkbox
         default-expand-all
         :default-checked-keys="selectChecks"
+        :check-strictly="true"
       />
       <el-row slot="footer" type="flex" justify="center">
         <el-col :span="6">
