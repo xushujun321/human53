@@ -90,7 +90,8 @@ const router = createRouter()
 // 重置路由
 export function resetRouter() {
   const newRouter = createRouter()
-  router.matcher = newRouter.matcher // 重新设置路由的可匹配路径
+  router.matcher = newRouter.matcher
+  // 重新设置路由的可匹配路径
 }
 
 export default router
