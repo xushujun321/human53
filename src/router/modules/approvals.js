@@ -8,7 +8,7 @@ export default {
     {
       path: '',
       component: () => import('@/views/approvals'),
-      name: 'approvals',
+      menusName: 'approvals',
       meta: {
         title: '审批',
         icon: 'tree-table'
@@ -17,7 +17,7 @@ export default {
     {
       path: 'salaryApproval/:id',
       component: () => import('@/views/approvals/salary'),
-      name: 'salaryApproval',
+      menusName: 'salaryApproval',
       hidden: true,
       meta: {
         title: '工资审核',

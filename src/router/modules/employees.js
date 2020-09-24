@@ -7,6 +7,7 @@ export default {
 
   children: [{
     path: '', // 二级默认路由
+    menusName: 'employees', // 路由名称
     component: () => import('@/views/employees'), // 按需加载
     // 为什么meta要在二级默认路由写 因为 当 访问地址是 /approvals的时候 实际上访问的是二级默认路由的路由信息
     meta: {

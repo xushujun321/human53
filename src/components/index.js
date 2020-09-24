@@ -10,6 +10,8 @@ import ImageUpload from './ImageUpload'
 import ScreenFull from './ScreenFull'
 // 动态组件的注册
 import ThemePicker from './ThemePicker'
+// 多语言组件的注册
+import lang from './lang'
 // 上传图片的练习
 // import ImageUpload2 from './ImageUpload/index2.vue'
 
@@ -20,6 +22,7 @@ export default {
     Vue.component('ImageUpload', ImageUpload)// 图片上传组件
     Vue.component('ScreenFull', ScreenFull)// 全屏插件
     Vue.component('ThemePicker', ThemePicker)// 动态主题插件
+    Vue.component('lang', lang)// 多语言组件插件
     // Vue.component('ImageUpload2', ImageUpload2)// 图片上传组件
   }
 }
