@@ -19,10 +19,10 @@ const actions = {
     const routes = []
     menus.forEach(item => {
     //  item是权限标识
-      if (asyncRoutes.some(obj => obj.menusName === item)) {
+      if (asyncRoutes.some(obj => obj.name === item)) {
       // 如果从动态路由表中能找到对应标识的内容
       // 注意，我们这里只处理了模块 并没有逐个路由的去处理
-        routes.push(...asyncRoutes.filter(obj => obj.menusName === item))
+        routes.push(...asyncRoutes.filter(obj => obj.name === item))
       }
     })
     // 最终得出的routes就是需要增加的路由
