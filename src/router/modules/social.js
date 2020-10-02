@@ -4,12 +4,12 @@ import Layout from '@/layout'
 export default {
   path: '/social_securitys',
   component: Layout,
-  menusName: 'social_securitys',
+  name: 'social_securitys',
   children: [
     {
       path: '',
       component: () => import('@/views/social'),
-      menusName: 'social_securitys',
+      name: 'social_securitys',
       meta: {
         title: '社保',
         icon: 'table'
@@ -21,7 +21,7 @@ export default {
       path: 'detail/:id',
       hidden: true,
       component: () => import('@/views/social/detail'),
-      menusName: 'socialDetail',
+      name: 'socialDetail',
       meta: {
         title: '社保'
       }
@@ -31,7 +31,7 @@ export default {
       path: 'historicalArchiving',
       hidden: true,
       component: () => import('@/views/social/historical'),
-      menusName: 'socialHistorical',
+      name: 'socialHistorical',
       meta: {
         title: '历史归档'
       }
@@ -40,7 +40,7 @@ export default {
     {
       path: 'monthStatement',
       component: () => import('@/views/social/month'),
-      menusName: 'socialMonthStatement',
+      name: 'socialMonthStatement',
       hidden: true,
       meta: {
         title: '当月报表'

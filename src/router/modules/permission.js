@@ -3,11 +3,11 @@ import Layout from '@/layout'
 export default {
   component: Layout,
   path: '/permission',
-  menusName: 'permissions',
+  name: 'permissions',
 
   children: [{
     path: '',
-    menusName: 'permissions',
+    name: 'permissions',
     component: () => import('@/views/permission'),
     meta: {
       title: '权限管理',

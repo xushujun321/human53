@@ -5,12 +5,12 @@ export default {
   path: '/users',
   component: Layout,
   hidden: true,
-  menusName: 'user12345',
+  name: 'user12345',
   children: [
     {
       path: '/users/approvals',
       component: () => import('@/views/users/approvals'),
-      menusName: 'usersApprovals',
+      name: 'usersApprovals',
       hidden: true,
       meta: {
         title: '用户'
@@ -19,7 +19,7 @@ export default {
     {
       path: '/users/info',
       component: () => import('@/views/users/info'),
-      menusName: 'myInfo',
+      name: 'myInfo',
       hidden: true,
       meta: {
         title: '我的信息'

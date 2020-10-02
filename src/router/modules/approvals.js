@@ -3,12 +3,12 @@ import Layout from '@/layout'
 export default {
   path: '/approvals',
   component: Layout,
-  menusName: 'approvals',
+  name: 'approvals',
   children: [
     {
       path: '',
       component: () => import('@/views/approvals'),
-      menusName: 'approvals',
+      name: 'approvals',
       meta: {
         title: '审批',
         icon: 'tree-table'
@@ -17,7 +17,7 @@ export default {
     {
       path: 'salaryApproval/:id',
       component: () => import('@/views/approvals/salary'),
-      menusName: 'salaryApproval',
+      name: 'salaryApproval',
       hidden: true,
       meta: {
         title: '工资审核',

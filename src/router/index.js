@@ -53,7 +53,7 @@ export const constantRoutes = [
     hidden: true,
     children: [{
       path: '',
-      menusName: 'import',
+      name: 'import',
       component: () => import('@/views/import/index'),
       meta: { title: '公共导入', icon: 'dashboard' }
     }]
@@ -65,7 +65,7 @@ export const constantRoutes = [
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      menusName: 'dashboard',
+      name: 'dashboard',
       component: () => import('@/views/dashboard/index'),
       meta: { title: '首页', icon: 'dashboard' }
     }
@@ -77,7 +77,8 @@ export const constantRoutes = [
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
+  base: '/hr/', // 配置项目的基础地址
   scrollBehavior: () => ({ y: 0 }), // 管理滚动行为 如果出现滚动 切换就让 让页面回到顶部
   // routes: [...constantRoutes, ...asyncRoutes] // 临时合并所有的路由
   routes: [...constantRoutes]// 将原来的静态路由 + 动态路由合体的模式 改成 只有静态路由

@@ -3,12 +3,12 @@ import Layout from '@/layout'
 export default {
   component: Layout,
   path: '/setting',
-  menusName: 'settings',
+  name: 'settings',
 
   children: [{
     path: '',
     component: () => import('@/views/setting'),
-    menusName: 'settings',
+    name: 'settings',
     meta: {
       title: '公司设置',
       icon: 'setting'

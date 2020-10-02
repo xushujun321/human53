@@ -4,12 +4,12 @@ import Layout from '@/layout'
 const salaryRouter = {
   path: '/salarys',
   component: Layout,
-  menusName: 'salarys',
+  name: 'salarys',
   children: [
     {
       path: '',
       component: () => import('@/views/salarys'),
-      menusName: 'salarys',
+      name: 'salarys',
       meta: {
         title: '工资',
         icon: 'money'
@@ -18,7 +18,7 @@ const salaryRouter = {
     {
       path: 'setting',
       component: () => import('@/views/salarys/setting'),
-      menusName: 'salarysSetting',
+      name: 'salarysSetting',
       hidden: true,
       meta: {
         title: '设置'
@@ -27,7 +27,7 @@ const salaryRouter = {
     {
       path: 'details/:yearMonth/:id',
       component: () => import('@/views/salarys/detail'),
-      menusName: 'salarysDetails',
+      name: 'salarysDetails',
       hidden: true,
       meta: {
         title: '详情'
@@ -36,7 +36,7 @@ const salaryRouter = {
     {
       path: 'historicalArchiving',
       component: () => import('@/views/salarys/historical'),
-      menusName: 'salarysHistorical',
+      name: 'salarysHistorical',
       hidden: true,
       meta: {
         title: '历史归档'
@@ -45,7 +45,7 @@ const salaryRouter = {
     {
       path: 'monthStatement',
       component: () => import('@/views/salarys/month'),
-      menusName: 'salarysMonthStatement',
+      name: 'salarysMonthStatement',
       hidden: true,
       meta: {
         title: '月报表'
