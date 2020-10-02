@@ -69,7 +69,7 @@
             </tr>
             <tr>
               <th>员工照片</th>
-              <td>{{ formData.staffPhoto }}</td>
+              <td><img :src="formData.staffPhoto" alt=""></td>
               <th>生日</th>
               <td colspan="5">{{ formData.birthday }}</td>
             </tr>
@@ -340,12 +340,17 @@ export default {
   },
   // 创建完毕状态
   created() {
+    //  通过type判断 读取数据类型
     this.type === 'personal' ? this.getPersonalDetail() : this.getJobDetail()
   },
   // 组件更新
   methods: {
     async getPersonalDetail() {
-      this.formData = await getPersonalDetail(this.userId) // 获取个人基本信息
+      const userInfo = await getUserDetailById(this.userId)
+      const userInfo2 = await getPersonalDetail(this.userId)
+      console.log(userInfo, userInfo2)
+      this.formData = { ...userInfo2, ...userInfo }// 获取个人基本信息
+      // this.formData = await getPersonalDetail(this.userId) // 获取个人基本信息
       this.$nextTick(() => {
         window.print()
       })
@@ -366,5 +371,13 @@ export default {
 .foot {
   padding: 30px 0;
   text-align: right;
+}
+@media print {
+ .sidebar-container,.tags-view-container, .navbar {
+     display:  none
+ }
+#app .main-container {
+     margin-left: 0
+ }
 }
 </style>
